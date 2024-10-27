@@ -1,0 +1,32 @@
+@startuml
+
+left to right direction
+skin rose
+
+:Usuario:
+:Aluno:
+:Professor:
+:Empresa: 
+
+Usuario <|-- Aluno
+Usuario <|-- Professor
+Usuario <|-- Empresa
+
+Usuario --> (realizar login)
+
+Aluno --> (realizar cadastro)
+Aluno --> (consultar extrato da conta aluno)
+Aluno --> (trocar moedas)
+
+Professor --> (consultar extrato da conta professor)
+Professor --> (distribuir moedas)
+
+Empresa --> (realizar cadastro)
+Empresa --> (cadastrar vantagem)
+
+(trocar moedas) .> (enviar email) : include
+(distribuir moedas) .> (notificar aluno) : include
+(cadastrar vantagem) .> (adicionar foto e descricao) : include
+
+
+@enduml
