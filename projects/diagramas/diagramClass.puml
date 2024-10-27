@@ -1,0 +1,98 @@
+@startuml
+
+skin rose
+left to right direction
+
+package "Autenticação e Cadastro" {
+    class Usuario {
+        -String nome
+        -String email
+        -String senha
+        +realizarLogin(): void
+        +consultarExtrato(): void
+    }
+
+    Usuario <|-- Aluno
+    Usuario <|-- Professor
+    Usuario <|-- Empresa
+}
+
+package "Ações do Aluno" {
+    class Aluno {
+        -String cpf
+        -String rg
+        -String endereco
+        -String instituicao
+        -String curso
+        +cadastrar(): void
+        +receberMoedas(montante: int, motivo: String): void
+        +trocarMoedas(vantagem: Vantagem): void
+    }
+    
+    Aluno --> Extrato : "consulta"
+    Aluno --> Vantagem : "troca"
+    Aluno --> Notificacao : "recebe notificação"
+    Aluno --> Email : "recebe email com cupom"
+}
+
+package "Ações do Professor" {
+    class Professor {
+        -String cpf
+        -String departamento
+        -int saldoMoedas = 1000
+        +enviarMoedas(aluno: Aluno, montante: int, motivo: String): void
+        +adicionarMoedas(saldoMoedas: int): void
+    }
+
+    Professor --> Extrato : "consulta"
+    Professor --> Notificacao : "notifica aluno"
+    Professor --> Aluno : "envia moedas"
+}
+
+package "Ações da Empresa" {
+    class Empresa {
+        -String cnpj
+        +cadastrarVantagem(vantagem: Vantagem): void
+    }
+
+    Empresa --> Vantagem : "cadastra"
+}
+
+package "Vantagens e Transações" {
+    class Vantagem {
+        -String descricao
+        -String foto
+        -int custo
+        +gerarCodigo(): String
+    }
+    
+    class Transacao {
+        -String tipo
+        -int montante
+        -Date data
+    }
+
+    Vantagem --> Empresa : "pertence a"
+    Vantagem --> Email : "gera código de cupom"
+    Extrato --> Transacao : "contém"
+    Transacao --> Usuario : "registra"
+}
+
+package "Comunicações" {
+    class Notificacao {
+        -String mensagem
+        +enviarNotificacao(destinatario: Usuario): void
+    }
+
+    class Email {
+        -String destinatario
+        -String assunto
+        -String corpo
+        -String codigoCupom
+        +enviarEmail(): void
+    }
+    
+    Email --> Vantagem : "inclui código de cupom"
+}
+
+@enduml
