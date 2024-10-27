@@ -1,0 +1,55 @@
+@startuml
+
+skin rose
+left to right direction
+
+package "Sistema de Mérito" {
+    
+    component "Interface de Usuário" {
+        [Tela de Login]
+        [Tela de Extrato]
+        [Tela de Troca de Moedas]
+    }
+
+    component "Serviço de Autenticação" {
+        [Validação de Usuário]
+    }
+
+    component "Serviço de Gestão de Contas" {
+        [Cadastro e Extrato de Aluno]
+        [Cadastro e Extrato de Professor]
+        [Cadastro de Empresa]
+    }
+
+    component "Serviço de Vantagens" {
+        [Cadastro de Vantagem]
+        [Troca de Moedas]
+    }
+
+    component "Serviço de Notificações e E-mails" {
+        [Envio de Notificações]
+        [Envio de E-mails]
+    }
+
+    component "Banco de Dados" {
+        [Armazenamento de Usuários]
+        [Armazenamento de Transações]
+        [Armazenamento de Vantagens]
+    }
+
+    [Interface de Usuário] --> [Serviço de Autenticação] : "Autenticar Usuário"
+    [Interface de Usuário] --> [Serviço de Gestão de Contas] : "Consultar Extrato"
+    [Interface de Usuário] --> [Serviço de Vantagens] : "Realizar Troca de Moedas"
+
+    [Serviço de Autenticação] --> [Banco de Dados] : "Validar Usuário"
+    
+    [Serviço de Gestão de Contas] --> [Banco de Dados] : "Consultar e Atualizar Dados"
+    [Serviço de Gestão de Contas] --> [Serviço de Notificações e E-mails] : "Enviar Notificações/E-mails"
+    
+    [Serviço de Vantagens] --> [Banco de Dados] : "Registrar Troca"
+    [Serviço de Vantagens] --> [Serviço de Notificações e E-mails] : "Enviar E-mails"
+
+    [Serviço de Notificações e E-mails] --> [Banco de Dados] : "Consultar Dados"
+}
+
+@enduml
