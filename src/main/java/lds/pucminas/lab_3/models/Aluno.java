@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -24,9 +26,11 @@ public class Aluno {
     private String instituicao;
     private String curso;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "aluno")
     private List<Transacao> transacoes;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "aluno")
     private List<Notificacao> notificacoes;
 
