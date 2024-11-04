@@ -9,6 +9,9 @@ import lds.pucminas.lab_3.models.Professor;
 import lds.pucminas.lab_3.services.ProfessorService;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 @RequestMapping("api/professores")
@@ -50,4 +53,14 @@ public class ProfessorController {
         professorService.deletar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/{professorId}/enviar-moedas/{alunoId}")
+    public ResponseEntity<String> enviarMoedas(@PathVariable Long professorId, @PathVariable Long alunoId, @RequestParam int montante, @RequestParam String motivo) {
+        try {
+            professorService.enviarMoedas(professorId, alunoId, montante, motivo);
+            return ResponseEntity.ok("Moedas enviadas com sucesso!");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }  
+    }    
 }

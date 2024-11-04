@@ -35,6 +35,7 @@ public class AlunoService {
         aluno.setInstituicao(alunoDetails.getInstituicao());
         aluno.setNotificacoes(alunoDetails.getNotificacoes());
         aluno.setNome(alunoDetails.getNome());
+        aluno.setSaldoMoedas(alunoDetails.getSaldoMoedas());
         return alunoRepository.save(aluno);
     }
 

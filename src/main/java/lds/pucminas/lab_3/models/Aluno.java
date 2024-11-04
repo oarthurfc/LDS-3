@@ -30,4 +30,6 @@ public class Aluno {
     @OneToMany(mappedBy = "aluno")
     private List<Notificacao> notificacoes;
 
+    private int saldoMoedas = 0;
+
 }
