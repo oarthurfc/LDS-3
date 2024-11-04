@@ -3,6 +3,7 @@ package lds.pucminas.lab_3.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lds.pucminas.lab_3.DTOs.ExtratoProfessorDTO;
 import lds.pucminas.lab_3.models.Aluno;
 import lds.pucminas.lab_3.models.Professor;
 import lds.pucminas.lab_3.models.Transacao;
@@ -80,6 +81,16 @@ public class ProfessorService {
         transacao.setData(new Date());
 
         transacaoRepository.save(transacao);
+    }
+
+    public ExtratoProfessorDTO consultarExtrato(Long professorId) {
+        Professor professor = professorRepository.findById(professorId)
+        .orElseThrow(() -> new RuntimeException("Professor não encontrado"));
+
+        List<Transacao> transacoes = transacaoRepository.findByProfessorId(professorId);
+        int saldo = professor.getSaldoMoedas();
+        
+        return new ExtratoProfessorDTO(saldo, transacoes);
     }
 
 }

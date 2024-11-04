@@ -7,5 +7,5 @@ import lds.pucminas.lab_3.models.Professor;
 
 @Repository
 public interface ProfessorRepository extends JpaRepository<Professor, Long>{
-    
+
 }

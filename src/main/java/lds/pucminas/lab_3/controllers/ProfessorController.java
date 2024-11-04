@@ -5,12 +5,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import lds.pucminas.lab_3.DTOs.ExtratoProfessorDTO;
 import lds.pucminas.lab_3.models.Professor;
 import lds.pucminas.lab_3.services.ProfessorService;
 
 import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -63,4 +67,11 @@ public class ProfessorController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }  
     }    
+
+    @GetMapping("/{id}/extrato")
+    public ResponseEntity<ExtratoProfessorDTO> consultarExtrato(@PathVariable Long id) {
+        ExtratoProfessorDTO extrato = professorService.consultarExtrato(id);
+        return ResponseEntity.ok(extrato);
+    }
+    
 }
