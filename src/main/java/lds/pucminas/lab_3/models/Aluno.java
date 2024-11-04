@@ -28,10 +28,6 @@ public class Aluno {
 
     @JsonIgnore
     @OneToMany(mappedBy = "aluno")
-    private List<Transacao> transacoes;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "aluno")
     private List<Notificacao> notificacoes;
 
 }
