@@ -1,5 +1,6 @@
 package lds.pucminas.lab_3.controllers;
 
+import lds.pucminas.lab_3.DTOs.ExtratoAlunoDTO;
 import lds.pucminas.lab_3.models.Aluno;
 import lds.pucminas.lab_3.services.AlunoService;
 
@@ -57,6 +58,12 @@ public class AlunoController {
     public ResponseEntity<Void> deleteAluno(@PathVariable Long id) {
         alunoService.deleteAluno(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/extrato")
+    public ResponseEntity<ExtratoAlunoDTO> consultarExtrato(@PathVariable Long id) {
+        ExtratoAlunoDTO extrato = alunoService.consultarExtrato(id);
+        return ResponseEntity.ok(extrato);
     }
 }
 
