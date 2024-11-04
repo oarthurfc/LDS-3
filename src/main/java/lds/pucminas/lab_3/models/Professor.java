@@ -2,7 +2,6 @@ package lds.pucminas.lab_3.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.List;
 
 @Entity
 @Data
@@ -21,8 +20,5 @@ public class Professor {
     private String cpf;
     private String departamento;
     private int saldoMoedas = 1000;
-
-    @OneToMany(mappedBy = "professor")
-    private List<Transacao> transacoes;
 
 }
