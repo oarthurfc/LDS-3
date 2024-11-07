@@ -1,31 +1,56 @@
-function buscarExtrato() {
+async function buscarExtrato() {
   const userId = document.getElementById("userId").value;
 
   if (!userId) {
-    alert("Por favor, insira um ID de usuário.");
-    return;
+      alert("Por favor, insira o ID do usuário.");
+      return;
   }
 
-  fetch(`http://localhost:8080/api/extrato/${userId}`)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Erro ao buscar o extrato");
-      }
-      return response.json();
-    })
-    .then(data => {
-      const extratoList = document.getElementById("extratoList");
-      extratoList.innerHTML = ""; 
+  try {
+      const alunoResponse = await fetch(`http://localhost:8080/api/alunos/${userId}`);
 
-      if (data.length === 0) {
-        extratoList.innerHTML = "<li>Nenhuma transação encontrada.</li>";
-      } else {
-        data.forEach(transacao => {
-          const listItem = document.createElement("li");
-          listItem.textContent = `Data: ${transacao.data} - Tipo: ${transacao.tipo} - Quantidade: ${transacao.quantidade} - Mensagem: ${transacao.mensagem}`;
-          extratoList.appendChild(listItem);
-        });
+      if (!alunoResponse.ok) {
+          const errorText = await alunoResponse.text();
+          console.error("Erro ao buscar extrato:", errorText);
+          alert("Erro ao buscar o extrato. Verifique o ID e tente novamente.");
+          return;
       }
-    })
-    .catch(error => console.error('Erro ao carregar extrato:', error));
+
+      const aluno = await alunoResponse.json();
+
+      const extratoList = document.getElementById("extratoList");
+      extratoList.innerHTML = "";
+
+      const saldoItem = document.createElement("li");
+      saldoItem.textContent = `Saldo de Moedas: ${aluno.saldoMoedas}`;
+      extratoList.appendChild(saldoItem);
+
+      const transacoesResponse = await fetch(`http://localhost:8080/api/transacoes`);
+
+      if (!transacoesResponse.ok) {
+          const errorText = await transacoesResponse.text();
+          console.error("Erro ao buscar transações:", errorText);
+          alert("Erro ao buscar as transações. Tente novamente.");
+          return;
+      }
+
+      const transacoes = await transacoesResponse.json();
+
+      const transacoesDoAluno = transacoes.filter(transacao => transacao.aluno.id === aluno.id);
+
+      if (transacoesDoAluno && transacoesDoAluno.length > 0) {
+          transacoesDoAluno.forEach(transacao => {
+              const listItem = document.createElement("li");
+              listItem.textContent = `Data: ${new Date(transacao.data).toLocaleDateString()} - Tipo: ${transacao.tipo} - Montante: ${transacao.montante}`;
+              extratoList.appendChild(listItem);
+          });
+      } else {
+          const listItem = document.createElement("li");
+          listItem.textContent = "Nenhuma transação encontrada.";
+          extratoList.appendChild(listItem);
+      }
+  } catch (error) {
+      console.error("Erro:", error);
+      alert("Ocorreu um erro ao buscar o extrato.");
+  }
 }

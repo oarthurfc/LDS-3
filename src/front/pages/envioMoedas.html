@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Envio de Moedas</title>
-  <link rel="stylesheet" href="/src/front/styles/form.css">
+  <link rel="stylesheet" href="/src/front/styles/envioMoedas.css">
 </head>
 <body>
   <div class="container">
     <header>Envio de Moedas</header>
     <div class="form-outer">
-      <form id="envioMoedasForm">
+      <form id="envioMoedasForm" onsubmit="enviarMoedas(); return false;">
         <div class="page">
+          <div class="title">Selecione o Professor:</div>
+          <div class="field">
+            <label for="professorId">Professor ID</label>
+            <input type="text" id="professorId" required>
+          </div>
           <div class="title">Selecione o Aluno:</div>
           <div class="field">
             <label for="aluno">Aluno</label>
@@ -32,6 +37,6 @@
       </form>
     </div>
   </div>
-  <script  src="envioMoedas.js"></script>
+  <script src="/src/front/scripts/envioMoedas.js"></script>
 </body>
 </html>
