@@ -12,6 +12,5 @@ public class TransacaoProfessorDTO {
     private String tipo;
     private int montante;
     private Date data;
-    private ProfessorResumoDTO professor; 
     private AlunoResumoDTO aluno;  
 }

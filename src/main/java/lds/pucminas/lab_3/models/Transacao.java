@@ -25,10 +25,14 @@ public class Transacao {
     private Date data;
 
     @ManyToOne
-    @JoinColumn(name = "professor_id", nullable = false)
+    @JoinColumn(name = "professor_id", nullable = true)
     private Professor professor;
 
     @ManyToOne
-    @JoinColumn(name = "aluno_id", nullable = true)
+    @JoinColumn(name = "aluno_id", nullable = false)
     private Aluno aluno;
+
+    @ManyToOne
+    @JoinColumn(name = "empresa_id", nullable = true)
+    private Empresa empresa;
 }

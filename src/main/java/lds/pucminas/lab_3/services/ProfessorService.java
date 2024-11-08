@@ -100,17 +100,12 @@ public class ProfessorService {
                     transacao.getAluno().getNome()
                 );
 
-                ProfessorResumoDTO professorResumo = new ProfessorResumoDTO(
-                    transacao.getProfessor().getId(),
-                    transacao.getProfessor().getNome()
-                );
 
                 return new TransacaoProfessorDTO(
                     transacao.getId(),
                     transacao.getTipo(),
                     transacao.getMontante(),
                     transacao.getData(),
-                    professorResumo,
                     alunoResumo
                 );
 

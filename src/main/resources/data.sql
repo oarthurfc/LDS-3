@@ -16,7 +16,7 @@ INSERT INTO empresa (nome, email, senha, cnpj) VALUES
 
 -- Inserindo Vantagens
 INSERT INTO vantagem (descricao, foto, custo, empresa_id) VALUES 
-('Desconto de 20% em cursos online', 'foto1.jpg', 50, 1),
-('Assinatura mensal gratuita', 'foto2.jpg', 100, 1),
+('Desconto em restaurantes da universidade', 'foto1.jpg', 50, 1),
+('Desconto de mensalidade', 'foto2.jpg', 100, 1),
 ('Desconto de 10% em livros acadêmicos', 'foto3.jpg', 30, 2),
-('Acesso premium a conteúdos exclusivos', 'foto4.jpg', 80, 2);
+('Acesso premium a conteúdos exclusivos', 'foto4.jpg', 40, 2);

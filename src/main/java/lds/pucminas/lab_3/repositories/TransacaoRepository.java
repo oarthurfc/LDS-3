@@ -10,4 +10,5 @@ import lds.pucminas.lab_3.models.Transacao;
 @Repository
 public interface TransacaoRepository extends JpaRepository<Transacao, Long>{
     List<Transacao> findByProfessorId(Long professorId);
+    List<Transacao> findByAlunoId(Long alunoId);
 }
