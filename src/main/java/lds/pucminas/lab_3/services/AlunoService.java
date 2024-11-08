@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lds.pucminas.lab_3.DTOs.ExtratoAlunoDTO;
-import lds.pucminas.lab_3.DTOs.ExtratoProfessorDTO;
 import lds.pucminas.lab_3.models.Aluno;
-import lds.pucminas.lab_3.models.Professor;
-import lds.pucminas.lab_3.models.Transacao;
 import lds.pucminas.lab_3.repositories.AlunoRepository;
 
 @Service
