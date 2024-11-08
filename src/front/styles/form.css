@@ -43,14 +43,14 @@ body {
     width: 100%;
     overflow: hidden;
 }
-.container .form-outer form {
+/* .container .form-outer form {
     display: flex;
-    width: calc(100% * var(--stepNumber));
-}
-.form-outer form .page {
+    width: calc(105% * var(--stepNumber));
+} */
+/* .form-outer form .page {
     width: calc(100% / var(--stepNumber));
     transition: margin-left 0.3s ease-in-out;
-}
+} */
 .form-outer form .page .title {
     text-align: left;
     font-size: 25px;
@@ -292,7 +292,7 @@ form .page .btns button.next {
     bottom: 11px;
     right: -51px;
     height: 3px;
-    width: 44px;
+    width: 50px;
     background: #262626;
   }
   .progress-bar .step .bullet.active:after{
