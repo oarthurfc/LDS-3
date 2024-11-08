@@ -3,7 +3,10 @@ package lds.pucminas.lab_3.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lds.pucminas.lab_3.DTOs.AlunoResumoDTO;
 import lds.pucminas.lab_3.DTOs.ExtratoProfessorDTO;
+import lds.pucminas.lab_3.DTOs.ProfessorResumoDTO;
+import lds.pucminas.lab_3.DTOs.TransacaoProfessorDTO;
 import lds.pucminas.lab_3.models.Aluno;
 import lds.pucminas.lab_3.models.Professor;
 import lds.pucminas.lab_3.models.Transacao;
@@ -14,6 +17,7 @@ import lds.pucminas.lab_3.repositories.AlunoRepository;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProfessorService {
@@ -89,8 +93,30 @@ public class ProfessorService {
 
         List<Transacao> transacoes = transacaoRepository.findByProfessorId(professorId);
         int saldo = professor.getSaldoMoedas();
+
+        List<TransacaoProfessorDTO> trasacoesDTO = transacoes.stream().map(transacao ->{
+                AlunoResumoDTO alunoResumo = new AlunoResumoDTO(
+                    transacao.getAluno().getId(),
+                    transacao.getAluno().getNome()
+                );
+
+                ProfessorResumoDTO professorResumo = new ProfessorResumoDTO(
+                    transacao.getProfessor().getId(),
+                    transacao.getProfessor().getNome()
+                );
+
+                return new TransacaoProfessorDTO(
+                    transacao.getId(),
+                    transacao.getTipo(),
+                    transacao.getMontante(),
+                    transacao.getData(),
+                    professorResumo,
+                    alunoResumo
+                );
+
+        }).collect(Collectors.toList());
         
-        return new ExtratoProfessorDTO(saldo, transacoes);
+        return new ExtratoProfessorDTO(saldo, trasacoesDTO);
     }
 
 }
