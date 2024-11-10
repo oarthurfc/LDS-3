@@ -1,0 +1,67 @@
+@startuml
+actor Professor as P
+actor Aluno as A
+actor EmpresaParceira as EP
+participant "Front-End" as FE
+participant "API Back-End" as BE
+participant "Banco de Dados" as DB
+
+== Cadastro de Alunos ==
+A -> FE: Acessa página de cadastro de aluno
+FE -> A: Exibe formulário de cadastro de aluno
+A -> FE: Preenche dados e envia formulário
+FE -> BE: POST /api/alunos (dados do aluno)
+BE -> DB: Salva dados do aluno
+DB --> BE: Confirmação de sucesso
+BE --> FE: Confirmação de cadastro
+FE --> A: Exibe mensagem de sucesso
+
+== Cadastro de Empresa Parceira ==
+EP -> FE: Acessa página de cadastro de empresa
+FE -> EP: Exibe formulário de cadastro de empresa
+EP -> FE: Preenche dados da empresa e envia
+FE -> BE: POST /api/empresas (dados da empresa)
+BE -> DB: Salva dados da empresa
+DB --> BE: Confirmação de sucesso
+BE --> FE: Confirmação de cadastro
+FE --> EP: Exibe mensagem de sucesso
+
+== Envio de Moedas (Professor para Aluno) ==
+P -> FE: Acessa página de envio de moedas
+FE -> P: Exibe formulário de envio de moedas
+P -> FE: Preenche dados do aluno, quantidade e motivo e envia
+FE -> BE: POST /api/enviarMoedas (alunoID, quantidade, motivo)
+BE -> DB: Verifica saldo do professor e registra transação
+DB --> BE: Confirmação de transação e atualização do saldo
+BE -> FE: Confirmação de envio de moedas
+FE -> A: Notifica aluno por email
+
+== Consulta de Extrato por ID ==
+A -> FE: Acessa página de consulta de extrato
+FE -> A: Solicita ID do usuário para consulta
+A -> FE: Informa ID do usuário
+FE -> BE: GET /api/extrato/{userID}
+BE -> DB: Consulta transações pelo userID
+DB --> BE: Retorna lista de transações
+BE --> FE: Envia lista de transações
+FE -> A: Exibe extrato do usuário
+
+== Cadastro de Vantagens (Empresa Parceira) ==
+EP -> FE: Acessa página de cadastro de vantagens
+FE -> EP: Exibe formulário de cadastro de vantagens
+EP -> FE: Preenche dados da vantagem e envia
+FE -> BE: POST /api/vantagens (dados da vantagem)
+BE -> DB: Salva dados da vantagem
+DB --> BE: Confirmação de sucesso
+BE --> FE: Confirmação de cadastro
+FE --> EP: Exibe mensagem de sucesso
+
+== Listagem de Vantagens (Aluno) ==
+A -> FE: Acessa página de listagem de vantagens
+FE -> BE: GET /api/vantagens
+BE -> DB: Consulta lista de vantagens
+DB --> BE: Retorna lista de vantagens
+BE --> FE: Retorna dados das vantagens
+FE -> A: Exibe lista de vantagens
+
+@enduml
