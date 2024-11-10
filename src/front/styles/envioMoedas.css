@@ -103,3 +103,17 @@ header {
         --containerWidth: 90%; /* Largura responsiva */
     }
 }
+.vantagens-list {
+    text-align: left; /* Alinha o texto à esquerda */
+    margin-top: 20px; /* Adiciona um espaço acima da lista */
+}
+
+.vantagens-list ul {
+    list-style-type: none; /* Remove os marcadores da lista */
+    padding: 0; /* Remove o preenchimento padrão */
+}
+
+.vantagens-list li {
+    padding: 10px; /* Adiciona um espaço interno aos itens da lista */
+    border-bottom: 1px solid var(--inputBorderColor); /* Adiciona uma linha abaixo de cada item */
+}
