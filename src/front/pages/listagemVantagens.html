@@ -3,17 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Lista de Vantagens Cadastradas</title>
-  <link rel="stylesheet" href="/src/front/styles/envioMoedas.css">
+  <link rel="stylesheet" href="/src/front/styles/vantagem.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
   <div class="container">
     <header>Vantagens Cadastradas</header>
     <div id="vantagensList" class="vantagens-list">
       <h2>Lista de Vantagens</h2>
-      <ul id="vantagensUl">
-      </ul>
+      <ul id="vantagensUl"></ul>
     </div>
   </div>
+
+  <!-- Modal para inserir ID do aluno -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Resgatar Vantagem</h2>
+      <label for="alunoId">ID do Aluno:</label>
+      <input type="number" id="alunoId" required>
+      <button id="confirmButton">Confirmar</button>
+    </div>
+  </div>
+
   <script src="/src/front/scripts/listaVantagens.js"></script>
 </body>
 </html>
