@@ -43,17 +43,20 @@ header {
 }
 
 .vantagens-list img {
-    width: 80px; /* Ajuste o tamanho da imagem */
+    width: 80px; 
     height: auto; 
     margin-right: 10px; 
 }
 
 .vantagem-info {
-    flex-grow: 1; /* Faz com que a informação ocupe o espaço restante */
-    text-align: left; /* Alinha o texto à esquerda */
-    margin-right: 10px; /* Espaço entre a informação e o botão */
+    flex-grow: 1; 
+    text-align: left; 
+    margin-right: 10px; 
 }
 
+h1 {
+    text-align: center; 
+}
 button {
     background-color: #333;
     color: white;
@@ -62,41 +65,41 @@ button {
     padding: 10px 15px;
     cursor: pointer;
     transition: background-color 0.3s;
-    min-width: 150px; /* Tamanho mínimo para o botão */
-    text-align: center; /* Centraliza o texto do botão */
+    min-width: 150px; 
+    text-align: center; 
 }
 
 button:hover {
     background-color: #000;
 }
 
-/* Estilos do modal */
+
 .modal {
     display: none; 
     position: fixed; 
-    z-index: 1000; /* Aumenta o z-index para garantir que fique acima de outros elementos */
+    z-index: 1000; 
     left: 0;
     top: 0;
     width: 100%; 
     height: 100%; 
     overflow: auto; 
-    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro com mais transparência */
+    background-color: rgba(0, 0, 0, 0.7); 
 }
 
 .modal-content {
-    background-color: #fff; /* Fundo branco para o conteúdo do modal */
+    background-color: #fff; 
     margin: 10% auto; 
     padding: 20px;
     border: 1px solid #888;
     width: 300px; 
     border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Sombra mais suave */
-    position: relative; /* Para posicionar o botão de fechar */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); 
+    position: relative; 
 }
 
 .close {
     color: #aaa;
-    position: absolute; /* Posiciona o botão de fechar no canto superior direito */
+    position: absolute; 
     top: 10px;
     right: 15px;
     font-size: 28px;
@@ -105,30 +108,30 @@ button:hover {
 
 .close:hover,
 .close:focus {
-    color: #000; /* Muda a cor ao passar o mouse */
+    color: #000; 
     text-decoration: none;
     cursor: pointer;
 }
 
 h2 {
-    margin: 0 0 15px; /* Margem para o título do modal */
-    font-size: 20px; /* Tamanho do título */
-    text-align: center; /* Centraliza o título */
+    margin: 0 0 15px; 
+    font-size: 20px; 
+    text-align: center; 
 }
 
 label {
-    display: block; /* Faz o label ocupar toda a linha */
-    margin-bottom: 5px; /* Espaço abaixo do label */
-    font-weight: bold; /* Destaca o label */
+    display: block; 
+    margin-bottom: 5px; 
+    font-weight: bold; 
 }
 
 input[type="number"] {
-    width: 100%; /* Largura total do campo de entrada */
-    padding: 10px; /* Espaçamento interno */
-    border: 1px solid #ccc; /* Borda leve */
-    border-radius: 4px; /* Bordas arredondadas */
-    box-sizing: border-box; /* Inclui padding e borda no cálculo da largura */
-    margin-bottom: 15px; /* Espaço abaixo do campo de entrada */
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    box-sizing: border-box; 
+    margin-bottom: 15px; 
 }
 
 
@@ -142,8 +145,8 @@ input[type="number"] {
     padding: 10px 15px;
     cursor: pointer;
     transition: background-color 0.3s;
-    width: 100%; /* Largura total do botão */
-    font-size: 16px; /* Tamanho da fonte do botão */
+    width: 100%; 
+    font-size: 16px; 
     text-align: center; 
 }
 
